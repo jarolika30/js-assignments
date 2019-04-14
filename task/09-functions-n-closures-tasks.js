@@ -69,7 +69,11 @@ function getPowerFunction(exponent) {
  *   getPolynom()      => null
  */
 function getPolynom() {
-    throw new Error('Not implemented');
+    let arr = [...arguments];
+    function poly(x, i = 0) {
+        return i < arr.length ? arr[arr.length - i - 1] * Math.pow(x, i) + poly(x, ++i) : 0;
+    }
+    return arr.length ? poly : null;
 }
 
 
@@ -165,7 +169,7 @@ function logger(func, logFunc) {
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
 function partialUsingArguments(fn) {
-    throw new Error('Not implemented');
+    return fn.bind(null, ...[...arguments].slice(1));
 }
 
 
