@@ -508,7 +508,7 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]   
  */
 function getIdentityMatrix(n) {
-   throw new Error('Not implemented');
+   return Array.from(Array(n), (_, id1) => Array.from(Array(n), (_, id2) => id1 == id2 ? 1 : 0));;
 }
 
 /**
@@ -587,7 +587,12 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-   throw new Error('Not implemented');
+   return array.reduce((acc, el) => {
+      acc.has(keySelector(el))
+         ? acc.get(keySelector(el)).push(valueSelector(el))
+         : acc.set(keySelector(el), [valueSelector(el)]);
+         return acc;
+   }, new Map());
 }
 
 

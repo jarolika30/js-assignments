@@ -186,9 +186,7 @@ function doRectanglesOverlap(rect1, rect2) {
  *   
  */
 function isInsideCircle(circle, point) {
-    var r = circle.radius;
-    var h = Math.sqrt(point.x*point.x + point.y*point.y);
-    return  !(h >= r);
+    return Math.sqrt(Math.pow(circle.center.x - point.x, 2) + Math.pow(circle.center.y - point.y, 2)) < circle.radius;
 }
 
 
@@ -236,7 +234,10 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-    throw new Error('Not implemented');
+    var str = isStartIncluded ? '[' : '(';
+    str += Math.min(a, b) + ', ' + Math.max(a, b);
+    str +=  isEndIncluded ? ']' : ')';
+    return str;
 }
 
 
@@ -410,7 +411,30 @@ function isBracketsBalanced(str) {
  *
  */
 function timespanToHumanString(startDate, endDate) {
-    throw new Error('Not implemented');
+    var minutes = 60*1000; var hours = 60*minutes; var days = 24*hours;
+    let time = (endDate - startDate);
+    
+        if ( time <= 45000)
+            return `a few seconds ago`;
+        if (time <= 90000)
+            return `a minute ago`;
+        if (time <= minutes*45)
+            return `${Math.round((time - 1) / minutes)} minutes ago`;
+        if (time <= minutes*90)
+            return `an hour ago`;
+        if (time <= hours*22)
+            return `${Math.round((time - 1) / hours)} hours ago`;
+        if (time <= hours*36)
+            return `a day ago`;
+        if (time <= days*25)
+            return `${Math.round((time - 1) / days)} days ago`;
+        if (time <= days*45)
+            return `a month ago`;
+        if (time <= days*345)
+            return `${Math.round((time - 1) / (days*30))} months ago`;
+        if (time <= days*545)
+            return `a year ago`;
+        return `${Math.round((time - 1) / (days*365))} years ago`;
 }
 
 
@@ -434,7 +458,7 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-    throw new Error('Not implemented');
+    return num.toString(n);
 }
 
 

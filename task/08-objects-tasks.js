@@ -61,7 +61,7 @@ function fromJSON(proto, json) {
     //var ob = Object.create(proto);
     //ob = JSON.parse(json);
     //return ob;
-    throw new Error('Not implemented');
+    return Object.assign(Object.create(proto), JSON.parse(json));
 }
 
 

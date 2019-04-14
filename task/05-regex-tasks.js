@@ -56,7 +56,7 @@ function getRegexForGuid() {
  *
  */
 function getRegexForPitSpot() {
-   throw new Error('Not implemented');
+   return /.*p[^er]+t.*/;
 }
 
 
@@ -119,7 +119,7 @@ function getRegexForSSN() {
  *   'Pa55'.match(validator) => false
  */
 function getPasswordValidator(minLength) {
-   throw new Error('Not implemented');;
+   return new RegExp(`^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)[0-9a-zA-Z]{${minLength},}$`);
 }
 
 
